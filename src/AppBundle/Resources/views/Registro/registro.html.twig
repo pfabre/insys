@@ -1,0 +1,24 @@
+{% block registro%}active{% endblock %}
+{% block body %}
+    <h1> Registro de Usuario</h1>
+
+         {{ form_start(form) }}
+           {{ form_label(form.nombre)}}
+           {{ form_witget(form.nombre)}}
+           {{ form_error(form.nombre)}}
+
+            {{ form_label(form.apellido)}}
+            {{ form_witget(form.apellido)}}
+            {{ form_error(form.apellido)}}
+
+            {{ form_label(form.email)}}
+            {{ form_witget(form..email)}}
+            {{ form_error(form.email)}}
+
+            {{ form_label(form.password)}}
+            {{ form_witget(form.password)}}
+            {{ form_error(form.password)}}
+    <br>
+    {{ form_witget(form.registrarse) }}
+    {{ form_end(form) }}
+{% endblock %}
