@@ -18,35 +18,14 @@ class RegistroController extends Controller
     /**
      * @Route("/registro", name="registro")
      */
-    public function indexAction(Request $request, UserPasswordEncoderInterface $encoder)
+    public function registroUsuario(Request $request)
     {
         $usuario= new Usuario();
         $form =$this->createForm(UsuarioType::class,$usuario);
-        //$usuario->setEmail("juanp@gmail.com");
-       // $usuario->setPassword("1234");
-        $usuario->setHabilitado(true);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $encoder =$encoder->encodePassword($usuario,$usuario->getPassword());
-            $usuario ->setPassword($encoder);
+         $form->handleRequest($request);
 
-            $manajadorDb =$this->getDoctrine()->getManager();
-            $manajadorDb->persist($usuario);
-            $manajadorDb ->flush();
-
-            return $this->redirectToRoute('login');
-        }
-        return $this->render('@App/Registro/registro.html.twig',[
-            "usuarios"=>$usuario]);
-
-     //   $encoder =$encoder->encodePassword($$usuario, "123456");
-        //$usuario ->setPassword($encoder);
-
-
-
-      //  $usuario =$this->getDoctrine()->getRepository(Usuario::class)->findAll();
-
-        // replace this example code with whatever you need
+        return $this->render('@App/Usuario/registro.html.twig',
+            array("form"=>$form->createView()));
 
     }
 

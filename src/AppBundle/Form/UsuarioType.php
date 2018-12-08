@@ -20,13 +20,14 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre',TextType::class,array("label"=>Nombre,"required"=>"required","attr"=>array("class"=>"form-control")))
-            ->add('email',TextType::class,array("label"=>Email,"required"=>"required","attr"=>array("class"=>"form-control")))
-            ->add('apellido',TextType::class,array("label"=>Apellido,"required"=>"required","attr"=>array("class"=>"form-control")))
-            ->add('password',TextType::class,array("label"=>Contrasena,"required"=>"required","attr"=>array("class"=>"form-control")))
+            ->add('nombre',TextType::class,array("label"=>"Nombre:","required"=>"required","attr"=>array("class"=>"form-control")))
+            ->add('email',TextType::class,array("label"=>"Email:","required"=>"required","attr"=>array("class"=>"form-control")))
+            ->add('apellido',TextType::class,array("label"=>"Apellido:","required"=>"required","attr"=>array("class"=>"form-control")))
+            ->add('password',TextType::class,array("label"=>"Contrasena:","required"=>"required","attr"=>array("class"=>"form-control")))
             -> add('registrarse',SubmitType::class,array("attr"=>array("class"=>"btn btn-primary")));
      //   ->add('habilitado');
-    }/**
+    }
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

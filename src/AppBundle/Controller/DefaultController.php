@@ -16,7 +16,7 @@ class DefaultController extends Controller
     {
 
         // replace this example code with whatever you need
-        return $this->render('@App/default/home.html.twig');
+        return $this->render('@App/home.html.twig');
     }
 
 
