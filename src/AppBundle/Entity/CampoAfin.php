@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Campo_Afin
@@ -30,7 +31,7 @@ class CampoAfin
 
     /**
      * @var
-     * @ORM\OneToMany(targetEntity="CampoAfin",mappedBy="misCamposAfines")
+     * @ORM\OneToMany(targetEntity="Solicitud",mappedBy="misCamposAfines")
      */
 
     private $misCamposAfines;
@@ -77,5 +78,22 @@ class CampoAfin
     {
         return $this->nombre;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMisCamposAfines()
+    {
+        return $this->misCamposAfines;
+    }
+
+    /**
+     * @param mixed $misCamposAfines
+     */
+    public function setMisCamposAfines($misCamposAfines)
+    {
+        $this->misCamposAfines = $misCamposAfines;
+    }
+
 }
 

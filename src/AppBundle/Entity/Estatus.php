@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,8 +28,29 @@ class Estatus
      * @ORM\Column(name="descripcion", type="string")
      */
     private $descripcion;
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="Solicitud",mappedBy="misEstados")
+     */
 
+    private $misEstados;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="SolicitudEstatus",mappedBy="EstatusSolicitudEstado")
+     */
+    private $EstatusSolicitudEstado;
+
+    /**
+     * Estatus constructor.
+     *
+     */
+    public function __construct()
+    {
+
+        $this->misEstados =new ArrayCollection();
+        $this ->EstatusSolicitudEstado =new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,6 +84,22 @@ class Estatus
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSolicitudEstatus()
+    {
+        return $this->solicitudEstatus;
+    }
+
+    /**
+     * @param mixed $solicitudEstatus
+     */
+    public function setSolicitudEstatus($solicitudEstatus)
+    {
+        $this->solicitudEstatus = $solicitudEstatus;
     }
 
 }

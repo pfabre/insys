@@ -79,11 +79,10 @@ class Usuario implements  UserInterface, \Serializable
 
     /**
      * @var
-     * @ORM\OneToMany(targetEntity="Solicitud",mappedBy="usuarioSolicitante")
+     * @ORM\OneToMany(targetEntity="UsuarioCampoAfin",mappedBy="misUsuarios")
      */
 
     private $misCamposAfines;
-
 
 
     /**

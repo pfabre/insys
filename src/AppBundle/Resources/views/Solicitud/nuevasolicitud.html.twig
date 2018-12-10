@@ -1,0 +1,37 @@
+{% extends'base.html.twig' %}
+{% block title%}Registrarse{% endblock %}
+{% block registro%}active{% endblock %}
+{% block body %}
+
+    <br>
+    <br>
+    <h1> Registro de  Solicitud</h1>
+
+    {{ form_start(form) }}
+
+            {{ form_label(form.titulo)}}
+            {{ form_widget(form.titulo)}}
+            {{ form_errors(form.titulo)}}
+
+            {{ form_label(form.descripcion)}}
+            {{ form_widget(form.descripcion)}}
+            {{ form_errors(form.descripcion)}}
+
+            {{ form_label(form.fecha)}}
+            {{ form_widget(form.fecha)}}
+            {{ form_errors(form.fecha)}}
+
+            {{ form_label(form.misCamposAfines) }}
+            <select name="menu">
+
+                {% for CampoAfines in CampoAfines%}
+                    <option value="{{ CampoAfines.ID }}">{{ CampoAfines.nombre }}</option>
+
+                        {% endfor %}
+            </select>
+
+
+    <br>
+    {{ form_widget(form.Agregar) }}
+    {{ form_end(form)}}
+{% endblock %}

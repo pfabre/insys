@@ -1,0 +1,16 @@
+{% extends'base.html.twig' %}
+{% block title%}Campos a Fin{% endblock %}
+{% block campo %}active{% endblock %}
+{% block body %}
+    <h1>Registro de Campos A Fin </h1>
+
+    {{ form_start(form) }}
+
+    {{ form_label(form.nombre)}}
+    {{ form_widget(form.nombre)}}
+
+
+    <br>
+    {{ form_widget(form.agregar) }}
+    {{ form_end(form)}}
+{% endblock %}

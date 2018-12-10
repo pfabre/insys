@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Usuarios{% endblock %}
+{%  block body %}
+        <h1> Lista de Solicitudes </h1>
+        <table>
+        <th>ID</th>
+        <th>Titulo</th>
+        <th>Descripcion</th>
+        <th>Fecha</th>
+        <th>Asignado</th>
+        <th>Solicitante</th>
+        <th>Estatus</th>
+    {% for Usuarios in Usuarios %}
+        <tr>
+                <td> {{ Usuarios.nombre}} </td>
+                <td> {{ Usuarios.apellido}} </td>
+                <td> {{ Usuarios.email}} </td>
+
+
+
+        </tr>
+    {% endfor %}
+{% endblock %}

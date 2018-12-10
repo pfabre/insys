@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Usuarios{% endblock %}
+{%  block body %}
+        <h1> Lista de Usuario </h1>
+        <table>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+    {% for Usuarios in Usuarios %}
+        <tr>
+                <td> {{ Usuarios.nombre}} </td>
+                <td> {{ Usuarios.apellido}} </td>
+                <td> {{ Usuarios.email}} </td>
+                <td>
+                        <div>
+                                <button type="submit" class="boton_personalizado"><a href="{{ path('update_usuario',{'id':Usuarios.ID}) }}">Edit</a></button>
+                            <button type="submit" class="boton_personalizado"><a href="{{ path('delete_usuario',{'id':Usuarios.ID}) }}">Delete</a></button>
+                        </div>
+                </td>
+
+
+        </tr>
+    {% endfor %}
+{% endblock %}

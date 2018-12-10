@@ -2,12 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Solicitud
  *
- * @ORM\Table(name="solicitud")
+ * @ORM\Table(name="Solicitud")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SolicitudRepository")
  */
 class Solicitud
@@ -56,10 +57,30 @@ class Solicitud
     private $usuarioAsignado;
 
     /**
-     * @var Estado;
-     * @ORM\ManyToOne (targetEntity="Estado",inversedBy="misEstados")
+     * @var CampoAfin;
+     *
+     * @ORM\ManyToOne(targetEntity="CampoAfin",inversedBy="misCamposAfines")
      */
-    private $usuarioEstado;
+    private $misCamposAfines;
+    /**
+     * @var Estatus;
+     * @ORM\ManyToOne(targetEntity="Estatus",inversedBy="misEstados")
+     */
+    private $misEstados;
+
+
+    /**
+     * Solicitud constructor.
+     */
+    public function __construct()
+    {
+     $this ->misEstados = new ArrayCollection();
+     $this->usuarioAsignado =new ArrayCollection();
+     $this->usuarioSolicitante =new ArrayCollection();
+     $this->misCamposAfines = new ArrayCollection();
+
+    }
+
 
     /**
      * Get id
@@ -146,30 +167,6 @@ class Solicitud
     }
 
     /**
-     * Set usuarioSolicitanteID
-     *
-     * @param integer $usuarioSolicitanteID
-     *
-     * @return Solicitud
-     */
-    public function setUsuarioSolicitanteID($usuarioSolicitanteID)
-    {
-        $this->usuarioSolicitanteID = $usuarioSolicitanteID;
-
-        return $this;
-    }
-
-    /**
-     * Get usuarioSolicitanteID
-     *
-     * @return int
-     */
-    public function getUsuarioSolicitanteID()
-    {
-        return $this->usuarioSolicitanteID;
-    }
-
-    /**
      * @return Usuario
      */
     public function getUsuarioAsignado()
@@ -185,52 +182,54 @@ class Solicitud
         $this->usuarioAsignado = $usuarioAsignado;
     }
 
-    /**
-     * Set estado
-     *
-     * @param integer $estado
-     *
-     * @return Solicitud
-     */
-    public function setEstado($estado)
-    {
-        $this->estado = $estado;
 
-        return $this;
+    /**
+     * @return Usuario
+     */
+    public function getUsuarioSolicitante()
+    {
+        return $this->usuarioSolicitante;
     }
 
     /**
-     * Get estado
-     *
-     * @return int
+     * @param Usuario $usuarioSolicitante
      */
-    public function getEstado()
+    public function setUsuarioSolicitante($usuarioSolicitante)
     {
-        return $this->estado;
+        $this->usuarioSolicitante = $usuarioSolicitante;
     }
 
     /**
-     * Set campoAfin
-     *
-     * @param integer $campoAfin
-     *
-     * @return Solicitud
+     * @return Estatus
      */
-    public function setCampoAfin($campoAfin)
+    public function getMisEstados()
     {
-        $this->campoAfin = $campoAfin;
-
-        return $this;
+        return $this->misEstados;
     }
 
     /**
-     * Get campoAfin
-     *
-     * @return int
+     * @param Estatus $misEstados
      */
-    public function getCampoAfin()
+    public function setMisEstados($misEstados)
     {
-        return $this->campoAfin;
+        $this->misEstados = $misEstados;
     }
+
+    /**
+     * @return CampoAfin
+     */
+    public function getMisCamposAfines()
+    {
+        return $this->misCamposAfines;
+    }
+
+    /**
+     * @param CampoAfin $misCamposAfines
+     */
+    public function setMisCamposAfines($misCamposAfines)
+    {
+        $this->misCamposAfines = $misCamposAfines;
+    }
+
 }
 

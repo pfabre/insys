@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Usuario;
+use AppBundle\Form\UsuarioType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,9 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UsuarioController extends Controller
 {
-    /**
-     * @Route("/", name="lista_usuarios")
-     */
+
     public function indexAction(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $usuario= new Usuario();
@@ -39,6 +38,65 @@ class UsuarioController extends Controller
         return $this->render('@App/Usuario/lista_usuario.html.twig',[
             "usuarios"=>$usuario]);
     }
+    /**
+     * @Route("/lista", name="lista")
+     */
+    public function showAction()
+    {
+        $Usuarios = $this->getDoctrine()->getRepository(Usuario::class)->findAll();
+        return $this->render('@App/Usuario/lista_usuario.html.twig', ["Usuarios" => $Usuarios]);
 
+    }
+    /**
+     * @Route("/buscarID", name="buscar_id_usuario")
+     */
+    public function showIDAction($id)
+    {
+        $Usuario = $this->getDoctrine()
+            ->getRepository(Usuario::class)
+            ->find($id);
+
+
+        return $this->render('@App/Solicitud/nuevasolicitud.html.twig',["Usuario"=>$Usuario]);
+
+    }
+    /**
+     * @Route("/update/{id}",name="update_usuario")
+     */
+    public function updateAction(Request $request,Usuario $usuario)
+    {
+
+        $form = $this->createForm(UsuarioType::class ,$usuario);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manejadorDb = $this->getDoctrine()->getManager();
+
+            $manejadorDb->flush();
+
+            return $this->redirectToRoute('lista',['usuario'=> $usuario->getId()]);
+        }
+        return $this->render('@App/Usuario/editarusuario.html.twig',
+            array("form" => $form->createView()));
+
+
+    }
+    /**
+     * @Route("/delete/{id}",name="delete_usuario")
+     */
+    public function deleteAction(Request $request,Usuario $usuario)
+    {
+
+        if ($usuario=== null) {
+            return $this->redirectToRoute('mostrar_campo');
+        }
+
+        $manejadorDb = $this->getDoctrine()->getManager();
+        $manejadorDb->remove($usuario);
+        $manejadorDb->flush();
+
+        return $this->redirectToRoute('lista');
+
+    }
 
 }

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Usuarios{% endblock %}
+
+{% block table %}  {% endblock %}
+
+{% block body %}
+    <h1> Lista de Campos </h1>
+    <table>
+    <th>ID</th>
+    <th>Campo afin</th>
+    <th>Opcion</th>
+    {% for CampoAfines in CampoAfines %}
+        <tr>
+            <td>{{ CampoAfines.ID }}</td>
+            <td> {{ CampoAfines.nombre}}</td>
+            <td>
+                <div>
+                    <button type="submit" class="boton_personalizado"><a href="{{ path('update',{'id':CampoAfines.ID}) }}">Edit</a></button>
+                    <button type="submit" class="boton_personalizado"><a href="{{ path('delete', {'id': CampoAfines.ID}) }}"> Delete</a></button>
+                </div>
+            </td>
+
+
+        </tr>
+    {% endfor %}
+{% endblock %}

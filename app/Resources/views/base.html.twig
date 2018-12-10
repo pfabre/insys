@@ -7,36 +7,60 @@
     <title>{% block title %}Welcome to Insys..{% endblock %}</title>
     {% block stylesheets %}
         <!-- Bootstrap core CSS -->
-        <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <!-- Custom styles for this template -->
         <link href="sticky-footer-navbar.css" rel="stylesheet">
-    {% endblock %}
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
 
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+        </style>
+        <style type="text/css">
+            .boton_personalizado{
+                text-decoration: white;
+                font-weight: 300;
+                font-size: 15px;
+               color:white;
+                background-color:red;
+                border: 2px;
+            }
+        </style>
+
+    {% endblock %}
 
 </head>
 
 <body>
-{% block body %}
+
     <header>
         <!-- Fixed navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Fixed navbar</a>
+            <a class="navbar-brand" href="#">Insys</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href=""> Usuario <span class="sr-only">(current)</span></a>
+
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href=""> Registro
+                             </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link disabled" href="#"> Tareas </a>
                     </li>
                 </ul>
+
                 <form class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -44,14 +68,16 @@
             </div>
         </nav>
     </header>
+    {% block body %}
 
     <!-- Begin page content -->
     <main role="main" class="container">
-        <h1 class="mt-5">Sticky footer with fixed navbar</h1>
+        <h1 class="mt-5"></h1>
         <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with
             <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
         <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
-        {% endblock %}
+
+
     </main>
 
     <footer class="footer">
@@ -60,15 +86,14 @@
         </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    {% endblock %}
+{% endblock %}
 
+    {% block javascripts %}
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ asset('assets/jquery-3.3.1.slim.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/popper.min.js') }}"></script>
+    {% endblock %}
 </body>
 </html>

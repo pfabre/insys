@@ -1,0 +1,15 @@
+{% extends'base.html.twig' %}
+{% block title%}Registrarse{% endblock %}
+{% block registro%}active{% endblock %}
+{% block body %}
+    <h1> Lista de Usuarios</h1>
+    <ul>
+        {% for Usuario in Usuarios if Usuario.active %}
+            <li>{{ Usuario.nombre }}</li>
+        {% else %}
+            <li>No users found</li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}
